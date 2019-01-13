@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Водители{% endblock %}
+
+{% block content %}
+    <table>
+    {% for driver in drivers %}
+        <tr>
+            <td>{{ driver.first_name }}</td>
+            <td>{{ driver.last_name }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
