@@ -8,7 +8,15 @@
         <tr>
             <td>{{ driver.first_name }}</td>
             <td>{{ driver.last_name }}</td>
+            <td>{{ driver.middle_name }}<td>
+            <td>{{ driver.phone_number }} </td>
+            <td>{{ driver.balance }}</td>
         </tr>
     {% endfor %}
     </table>
+
+    <form action="" method="get">
+        <input type="submit" value="Обновить из Яндекса" name="update">
+    </form>
+    <h1>{{ data }}</h1>
 {% endblock %}

@@ -8,7 +8,4 @@ def all_drivers_from_yandex(request):
 
 def all_drivers_from_base(request):
     drivers = Driver.objects.all()
-    # print(type(drivers))
-    # d = list(drivers)
-    return render(request, 'drivers_from_base.html', context={'drivers': drivers})
-    # HttpResponse(d)
+    return render(request, 'drivers_from_base.html', {'drivers': drivers})
