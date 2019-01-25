@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Водители{% endblock %}
+{% block title %}{{ driver.first_name }}{% endblock %}
 
 {% block content %}
     <form action="" method="get">
         <input type="submit" value="Обновить из Яндекса" name="update">
     </form>
+    <a href="{% url 'all-drivers' %}"></a>
     <table>
-    {% for driver in drivers %}
         <tr>
-            <td><a href="{% url 'one-driver' driver.pk %}">{{ driver.first_name }}</a></td>
+            <td>{{ driver.first_name }}</td>
             <td>{{ driver.last_name }}</td>
             <td>{{ driver.middle_name }}<td>
             <td>{{ driver.phone_number }} </td>
             <td>{{ driver.balance }}</td>
-        </tr>
-    {% endfor %}
+         </tr>
     </table>
 
 {% endblock %}
