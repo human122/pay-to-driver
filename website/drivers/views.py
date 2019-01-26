@@ -33,6 +33,7 @@ def driver_detail(request, pk):
     driver = get_object_or_404(Driver, pk=pk)
     return render(request, 'one-driver.html', {'driver': driver})
 
-def all_drivers_from_base(request):
+def all_drivers_from_base(request):    
     drivers = Driver.objects.all()
+    # if request.POST[]
     return render(request, 'drivers_from_base.html', {'drivers': drivers})
