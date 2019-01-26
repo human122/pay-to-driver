@@ -1,2 +1,5 @@
 Pipfile
 Pipfile.*
+env/
+.DS_Store
+*.pyc
