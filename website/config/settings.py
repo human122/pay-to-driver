@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
+from drivers.config import YANDEX_API_KEY
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +77,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db',
+#     }
+# }
+DATABASES = {    
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'test_db',
@@ -126,3 +132,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GET_LIST_URL = f'https://taximeter.yandex.rostaxi.org/api/driver/list?apikey={YANDEX_API_KEY}'
+GET_DRIVER_URL = f'https://taximeter.yandex.rostaxi.org/api/driver/get?apikey={YANDEX_API_KEY}&id='
