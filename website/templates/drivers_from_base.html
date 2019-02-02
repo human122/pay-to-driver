@@ -18,17 +18,17 @@
                 <th>Баланс</th>
             </tr>
         </thead>
-    <tbody>
-    {% for driver in drivers %}
-        <tr>
-            <td><a href="{% url 'one-driver' driver.pk %}">{{ driver.last_name }}</a></td>
-            <td>{{ driver.first_name }}</td>
-            <td>{{ driver.middle_name }}</td>
-            <td>{{ driver.phone_number }}</td>
-            <td>{{ driver.balance }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
+        <tbody>
+        {% for driver in drivers %}
+            <tr>
+                <td><a href="{% url 'one-driver' driver.YaId %}">{{ driver.last_name }}</a></td>
+                <td>{{ driver.first_name }}</td>
+                <td>{{ driver.middle_name }}</td>
+                <td>{{ driver.phone_number }}</td>
+                <td>{{ driver.balance }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
 
         <tfoot>
             <tr>

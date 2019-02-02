@@ -10,8 +10,8 @@ from parks.models import Park
 from .config import YANDEX_API_KEY
 
 
-def driver_from_yandex(request, pk):
-    driver = get_object_or_404(Driver, pk=pk)
+def driver_from_yandex(request, slug):
+    driver = get_object_or_404(Driver, YaId=slug)
     r = requests.get(settings.GET_LIST_URL)
     if r.status_code == 200:
         if driver.YaId in r.json()['drivers'].keys():
@@ -30,10 +30,6 @@ def driver_from_yandex(request, pk):
             return HttpResponse("<h1>Водитель с таким id не найден в Яндекс</h1>")
     else:
         return HttpResponse("<h1>Яндекс не отвечает, попробуйте повторить запрос позже</h1>")
-
-def driver_detail(request, pk):
-    driver = get_object_or_404(Driver, pk=pk)
-    return render(request, 'one-driver.html', {'driver': driver})
 
 @login_required(login_url='/drivers/login/')
 def all_drivers_from_base(request):    
