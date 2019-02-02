@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ driver.first_name }}{% endblock %}
+{% block title %}{{ driver.last_name }}{% endblock %}
 
 {% block content %}
-    <form action="" method="get">
-        <input type="submit" value="Обновить из Яндекса" name="update">
-    </form>
-    <a href="{% url 'all-drivers' %}"></a>
+    <button><a href="{% url 'all-drivers' %}">Все водители</a></button>
+    
     <table>
         <tr>
             <td>{{ driver.first_name }}</td>

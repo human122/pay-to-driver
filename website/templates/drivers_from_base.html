@@ -3,9 +3,11 @@
 {% block title %}Водители{% endblock %}
 
 {% block content %}
-    <form action="" method="post">
+    <form action="{% url 'all-drivers' %}" method="post">
+        {% csrf_token %}
         <input type="submit" value="Обновить из Яндекса" name="update">
     </form>
+    Всего водителей: {{ count }}
     <table id="example" class="table table-striped table-bordered" style="width:90%">        
         <thead>
             <tr>
