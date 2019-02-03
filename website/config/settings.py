@@ -133,5 +133,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-GET_LIST_URL = f'https://taximeter.yandex.rostaxi.org/api/driver/list?apikey={YANDEX_API_KEY}'
+GET_LIST_URL =   f'https://taximeter.yandex.rostaxi.org/api/driver/list?apikey={YANDEX_API_KEY}'
+GET_BALANCE_URL = f'https://taximeter.yandex.rostaxi.org/api/driver/balance?apikey={YANDEX_API_KEY}'
+
+# TODO: remove GET_DRIVER_URL from settings, already enough consts 
 GET_DRIVER_URL = f'https://taximeter.yandex.rostaxi.org/api/driver/get?apikey={YANDEX_API_KEY}&id='
