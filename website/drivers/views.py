@@ -66,14 +66,13 @@ def sync_db_with_remote():
 
 
     def update_in_db(drivers_id_from_db, drivers_id_from_remote):
+        gen = zip(param_list[1::6],
+                  param_list[2::6],
+                  param_list[3::6],
+                  param_list[4::6],
+                  param_list[5::6])
         for driver in drivers_id_from_db & drivers_id_from_remote:
-            for ln, fn, mn, ph, bal in zip(
-                                        param_list[1::6],
-                                        param_list[2::6],
-                                        param_list[3::6],
-                                        param_list[4::6],
-                                        param_list[5::6]
-                                        ):
+            for ln, fn, mn, ph, bal in gen:
                 if ln != r.json()['drivers'][driver].get('LastName'):
                     param_list[param_list.index(driver)+1] = r.json()['drivers'][driver].get('LastName')
                 if fn != r.json()['drivers'][driver].get('FirstName'):
@@ -95,8 +94,9 @@ def sync_db_with_remote():
             param_list.append(r.json()['drivers'][driver].get('Phones', ''))
             param_list.append(b.json()[driver])
 
-
+    print('hello before')
     update_in_db(drivers_id_from_db, drivers_id_from_remote)
+    print('hello after')
     add_new(drivers_id_from_db, drivers_id_from_remote)
 
     for driver in param_list[::6]:
@@ -117,8 +117,3 @@ def sync_db_with_remote():
                                 balance=param_list[param_list.index(driver)+5],
                                 parks=p[0]
                                 )
-
-
-
-
-

@@ -10,24 +10,18 @@
 </head>
 <body>
     <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
+        <h3 class="text-center text-white pt-5">Login</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="{% url 'login' %}" method="post">
-                            {% csrf_token %}
-                            <h3 class="text-center text-info">Login</h3>
-                            {% for field in form %}
-                            <div class="form-group">
-                                <label for="{{ field.id_for_label }}" class="text-info">{{ field.html_name | capfirst }}: {{ field.errors }}</label><br>
-                                <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}" value="" class="form-control" required>
-                            </div>
-                            {% endfor %}
+                        <form id="login-form" class="form" action="{% url 'login' %}">
+                            <h3 class="text-center text-info">You logged out and may log in again.</h3>
+                            <br>
                             <div class="form-group">                               
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="submit" class="btn btn-info btn-md align-items-center justify-content-center" value="Log in again">
                             </div>
-                            <input type="hidden" name="next" value="{{ next }}">
+                            <input type="hidden" name="next" value="">
                         </form>
                     </div>
                 </div>

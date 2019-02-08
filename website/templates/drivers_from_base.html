@@ -8,6 +8,7 @@
         <input type="submit" value="Обновить из Яндекса" name="update">
     </form>
     Всего водителей: {{ count }}
+    <button><a href="{% url 'logout' %}">Logout</a></button>
     <table id="example" class="table table-striped table-bordered" style="width:90%">        
         <thead>
             <tr>
