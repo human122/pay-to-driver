@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.views.generic.edit import ProcessFormView
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -7,11 +9,17 @@ import requests
 
 from .models import Driver
 from parks.models import Park
+from qiwi.models import Qiwi_Park
+from qiwi.views import get_qiwi_park
 from .config import YANDEX_API_KEY
 
+class LogoutView(ProcessFormView):
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('login')
 
 def driver_from_yandex(request, slug):
-    driver = get_object_or_404(Driver, YaId=slug)
+    driver = get_object_or_404(Driver, YaId=slug)    
     r = requests.get(settings.GET_LIST_URL)
     if r.status_code == 200:
         if driver.YaId in r.json()['drivers'].keys():
@@ -24,7 +32,9 @@ def driver_from_yandex(request, slug):
                     if getattr(driver, db) != d.json()['driver'][ya]:
                         setattr(driver, db, d.json()['driver'][ya])
                 driver.save() # TODO: call to db, is it needed in all cases?
-                return render(request, 'one_driver.html', {'driver': driver})
+                limit = driver.balance - 100
+                has_balance = limit > 0 or None
+                return render(request, 'one_driver.html', {'driver': driver, 'limit': limit, 'has_balance': has_balance})
 
         else:
             return HttpResponse("<h1>Водитель с таким id не найден в Яндекс</h1>")
@@ -34,11 +44,13 @@ def driver_from_yandex(request, slug):
 @login_required(login_url='/drivers/login/')
 def all_drivers_from_base(request):    
     drivers = Driver.objects.all()
+    qiwi = Qiwi_Park.objects.all()[0]
     if request.method == 'POST':
         sync_db_with_remote()
+        get_qiwi_park(qiwi)
     
     drivers_count = len(drivers)
-    return render(request, 'drivers_from_base.html', {'drivers': drivers, 'count': drivers_count})
+    return render(request, 'drivers_from_base.html', {'drivers': drivers, 'count': drivers_count, 'qiwi': qiwi})
 
 # TODO: refactor all this trash!!!!
 def sync_db_with_remote():
@@ -115,5 +127,5 @@ def sync_db_with_remote():
                                 middle_name=param_list[param_list.index(driver)+3],
                                 phone_number=param_list[param_list.index(driver)+4],
                                 balance=param_list[param_list.index(driver)+5],
-                                parks=p[0]
+                                park=p[0]
                                 )

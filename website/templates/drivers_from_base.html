@@ -3,12 +3,13 @@
 {% block title %}Водители{% endblock %}
 
 {% block content %}
+    <p class="text-right">{{ qiwi.amount }} руб.</p>
     <form action="{% url 'all-drivers' %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Обновить из Яндекса" name="update">
     </form>
-    Всего водителей: {{ count }}
-    <button><a href="{% url 'logout' %}">Logout</a></button>
+    <p>Всего водителей: {{ count }}
+    <button><a href="{% url 'logout' %}">Logout</a></button></p>
     <table id="example" class="table table-striped table-bordered" style="width:90%">        
         <thead>
             <tr>
@@ -26,7 +27,7 @@
                 <td>{{ driver.first_name }}</td>
                 <td>{{ driver.middle_name }}</td>
                 <td>{{ driver.phone_number }}</td>
-                <td>{{ driver.balance }}</td>
+                <td>{{ driver.balance|floatformat:2 }}</td>
             </tr>
         {% endfor %}
         </tbody>

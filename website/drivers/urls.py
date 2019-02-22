@@ -11,7 +11,7 @@ urlpatterns = [
         extra_context={'next': '/drivers/all-drivers/'}
         ), name="login"),
     path('logout/', auth_views.LogoutView.as_view(
-        template_name="logout.html",
+        template_name="login.html",
         extra_context={'next': '/login/'}
-        ), name='logout'),
+        ), name='logout'),    
 ]

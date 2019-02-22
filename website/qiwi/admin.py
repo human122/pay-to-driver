@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Qiwi_Park, Qiwi_Driver
+
+admin.site.register(Qiwi_Park)
+admin.site.register(Qiwi_Driver)

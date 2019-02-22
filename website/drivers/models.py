@@ -20,7 +20,7 @@ class Driver(models.Model):
     
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
-    parks = models.ForeignKey(Park, on_delete=models.CASCADE)
+    park = models.ForeignKey(Park, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.last_name
