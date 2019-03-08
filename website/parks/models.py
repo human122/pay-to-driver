@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Park(models.Model):
     api_key = models.CharField(max_length=200)
     title = models.CharField(max_length=200)

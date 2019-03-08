@@ -3,6 +3,7 @@ from django.db import models
 from parks.models import Park
 from drivers.models import Driver
 
+
 class Qiwi_Park(models.Model):
     amount = models.FloatField(default=0.0)
     updated = models.DateTimeField(auto_now=True)
@@ -13,6 +14,7 @@ class Qiwi_Park(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.park, self.amount)
+
 
 class Qiwi_Driver(models.Model):
     amount = models.FloatField(default=0.0)

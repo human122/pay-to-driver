@@ -1,4 +1,3 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 
-from .models import Payment
-
+# from .models import Payment

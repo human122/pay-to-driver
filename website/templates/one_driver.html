@@ -29,4 +29,10 @@
         <p>Вы можете вывести на qiwi-кошелек: {{ limit|floatformat:2 }} руб.</p>
     {% endif %}
 
+    <form action='' method='post'>
+        {% csrf_token %}
+        <input type='text' name='amount'>
+        <input type='submit' value='Вывести на qiwi-кошелек'>
+    </form>
+
 {% endblock %}
