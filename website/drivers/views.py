@@ -13,12 +13,6 @@ from qiwi.models import Qiwi_Park
 from qiwi.views import get_qiwi_park
 
 
-class LogoutView(ProcessFormView):
-    def post(self, request, *args, **kwargs):
-        logout(request)
-        return redirect('login')
-
-
 def driver_from_yandex(request, slug):
     driver = get_object_or_404(Driver, YaId=slug)
     r = requests.get(settings.GET_LIST_URL)

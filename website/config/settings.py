@@ -145,3 +145,5 @@ GET_BALANCE_URL = f'https://taximeter.yandex.rostaxi.org/api/driver/\
 # TODO: remove GET_DRIVER_URL from settings, already enough consts
 GET_DRIVER_URL = f'https://taximeter.yandex.rostaxi.org/api/driver/\
                                             get?apikey={YANDEX_API_KEY}&id='
+
+LOGOUT_REDIRECT_URL = 'all-drivers'
